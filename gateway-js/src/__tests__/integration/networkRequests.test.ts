@@ -27,13 +27,13 @@ import {
 } from 'apollo-federation-integration-testsuite';
 import { getTestingSupergraphSdl } from '../execution-utils';
 
-export interface MockService {
+export interface Fixture {
   name: string;
   url: string;
   typeDefs: DocumentNode;
 }
 
-const simpleService: MockService = {
+const simpleService: Fixture = {
   name: 'accounts',
   url: 'http://localhost:4001',
   typeDefs: gql`
