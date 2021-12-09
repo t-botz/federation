@@ -30,7 +30,7 @@ import {
   defaultFieldResolverWithAliasSupport,
 } from './executeQueryPlan';
 
-import { getServiceDefinitionsFromRemoteEndpoint } from './loadServicesFromRemoteEndpoint';
+import { getServiceDefinitionsFromRemoteEndpoint } from './legacy/loadServicesFromRemoteEndpoint';
 import {
   GraphQLDataSource,
   GraphQLDataSourceRequestKind,
@@ -1411,9 +1411,11 @@ export class ApolloGateway implements GraphQLService {
         stoppingDone!();
         return;
       }
-      case "updating schema": {
+      case 'updating schema': {
         // This should never happen
-        throw Error("`ApolloGateway.stop` called from an unexpected state `updating schema`");
+        throw Error(
+          '`ApolloGateway.stop` called from an unexpected state `updating schema`',
+        );
       }
       default:
         throw new UnreachableCaseError(this.state);
@@ -1487,3 +1489,5 @@ export {
   SubgraphHealthCheckFunction,
   SupergraphSdlHook,
 } from './config';
+
+export { IntrospectAndCompose } from './legacy/IntrospectAndCompose';
